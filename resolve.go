@@ -16,7 +16,7 @@ type ResolveResponse struct {
 	} `json:"data"`
 }
 
-func (c *client) Resolve(ctx context.Context, bankCode, accountNumber string) (data ResolveResponse, err error) {
+func (c *client) ResolveBankAccount(ctx context.Context, bankCode, accountNumber string) (data ResolveResponse, err error) {
 	req, err := c.newRequest(ctx, http.MethodGet, "/bank/resolve")
 	if err != nil {
 		return data, fmt.Errorf("failed to create request: %w", err)

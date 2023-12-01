@@ -18,7 +18,9 @@ type HttpClient interface {
 	Do(req *http.Request) (*http.Response, error)
 }
 
-type Client interface{}
+type Client interface {
+	ResolveBankAccount(ctx context.Context, bankCode, accountNumber string) (data ResolveResponse, err error)
+}
 
 var _ Client = (*client)(nil)
 

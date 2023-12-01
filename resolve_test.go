@@ -27,7 +27,7 @@ func TestResolveSuccess(t *testing.T) {
 	resp := &http.Response{StatusCode: 200, Body: io.NopCloser(bytes.NewReader(resolveSuccess))}
 	mockHttpClient.On("Do", mock.AnythingOfType("*http.Request")).Return(resp, nil).Once()
 
-	got, err := client.Resolve(context.TODO(), "123", "123456789")
+	got, err := client.ResolveBankAccount(context.TODO(), "123", "123456789")
 	require.NoError(t, err)
 
 	assert.True(t, got.Status)
@@ -37,10 +37,10 @@ func TestResolveFailedAuth(t *testing.T) {
 	mockHttpClient := paystack.NewMockHttpClient(t)
 	client := paystack.NewClient("token", paystack.WithHTTPClient(mockHttpClient))
 
-	resp := &http.Response{StatusCode: 200, Body: io.NopCloser(bytes.NewReader(resolveFailAuth))}
+	resp := &http.Response{StatusCode: 401, Body: io.NopCloser(bytes.NewReader(resolveFailAuth))}
 	mockHttpClient.On("Do", mock.AnythingOfType("*http.Request")).Return(resp, nil).Once()
 
-	got, err := client.Resolve(context.TODO(), "123", "123456789")
+	got, err := client.ResolveBankAccount(context.TODO(), "123", "123456789")
 	require.NoError(t, err)
 
 	assert.False(t, got.Status)

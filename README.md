@@ -16,7 +16,7 @@ go get github.com/brokeyourbike/paystack-api-client-go
 ## Usage
 
 ```go
-client := paystack.NewClient("token", signer)
+client := paystack.NewClient("token")
 
 resp, err := paystack.GetBanks(context.TODO())
 require.NoError(t, err)

@@ -20,6 +20,7 @@ client := paystack.NewClient("token", signer)
 
 resp, err := paystack.GetBanks(context.TODO())
 require.NoError(t, err)
+require.True(t, resp.Status)
 ```
 
 ## Authors

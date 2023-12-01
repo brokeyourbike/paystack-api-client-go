@@ -1,0 +1,21 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+    "name": "paystack-api-client-go",
+    "image": "mcr.microsoft.com/devcontainers/go:1-1.21-bookworm",
+    "features": {
+        "ghcr.io/brokeyourbike/devcontainer-features/staticcheck:0": {
+            "version": "2023.1.6"
+        },
+        "ghcr.io/brokeyourbike/devcontainer-features/mockery-go:0": {
+            "version": "2.33.0"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.Go"
+            ]
+        }
+    }
+}

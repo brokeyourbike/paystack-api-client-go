@@ -1,0 +1,27 @@
+name: lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version-file: 'go.mod'
+      - uses: brokeyourbike/go-mockery-action@v0.1
+        with:
+          mockery-version: '2.33.0'
+      - run: mockery --quiet
+      - uses: dominikh/staticcheck-action@v1
+        with:
+          version: '2023.1.6'
+          install-go: false

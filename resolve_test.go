@@ -22,6 +22,15 @@ var resolveSuccess []byte
 //go:embed testdata/resolve-fail-auth.json
 var resolveFailAuth []byte
 
+func TestResolveRequestErr(t *testing.T) {
+	mockHttpClient := paystack.NewMockHttpClient(t)
+	client := paystack.NewClient("token", paystack.WithHTTPClient(mockHttpClient))
+
+	_, err := client.ResolveBankAccount(nil, "123", "123456789") //lint:ignore SA1012 testing failure
+	require.Error(t, err)
+	require.Contains(t, err.Error(), "failed to create request")
+}
+
 func TestResolveSuccess(t *testing.T) {
 	mockHttpClient := paystack.NewMockHttpClient(t)
 

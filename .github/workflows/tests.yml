@@ -20,7 +20,7 @@ jobs:
     - uses: brokeyourbike/go-mockery-action@v0.1
       with:
         mockery-version: '2.33.0'
-    - run: mockery --quiet --inpackage --all
+    - run: mockery --quiet --inpackage --all --testonly
     - run: go build -v ./...
     - run: go test -race -covermode=atomic -coverprofile=coverage.out -v ./...
 

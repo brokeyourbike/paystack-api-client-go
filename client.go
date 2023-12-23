@@ -75,19 +75,19 @@ func (c *client) newRequest(ctx context.Context, method, url string) (*request, 
 		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
-	if c.logger != nil {
-		c.logger.WithContext(ctx).WithFields(logrus.Fields{
-			"http.request.method": req.Method,
-			"http.request.url":    req.URL.String(),
-		}).Debug("paystack.client -> request")
-	}
-
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.token))
 	return NewRequest(req), nil
 }
 
 func (c *client) do(ctx context.Context, req *request) error {
+	if c.logger != nil {
+		c.logger.WithContext(ctx).WithFields(logrus.Fields{
+			"http.request.method": req.req.Method,
+			"http.request.url":    req.req.URL.String(),
+		}).Debug("paystack.client -> request")
+	}
+
 	resp, err := c.httpClient.Do(req.req)
 	if err != nil {
 		return fmt.Errorf("failed to send request: %w", err)

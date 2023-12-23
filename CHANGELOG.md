@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.1](https://www.github.com/brokeyourbike/paystack-api-client-go/compare/v0.1.0...v0.1.1) (2023-12-23)
+
+
+### Bug Fixes
+
+* kv ([b9c7a37](https://www.github.com/brokeyourbike/paystack-api-client-go/commit/b9c7a37e48443d43cb6d3efac49873eacf4f8b42))
+
 ## 0.1.0 (2023-12-01)
 
 
